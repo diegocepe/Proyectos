@@ -22,6 +22,10 @@ public class EmpleadoC {
 	
 	public static void insertarEmpleado() throws ClassNotFoundException, SQLException {
 		
+//		Insertar un Empleado nuevo en la empresa, incorporando los datos del tipo de empleado  
+//		y el departamento asociado. 
+//		Si es un técnico, deberá incorporarse el nivel del mismo e insertarlo en la tabla correspondiente
+		
 		EnlaceJDBC enlace=new EnlaceJDBC();
 		Scanner sc=new Scanner(System.in);
 		
@@ -36,7 +40,7 @@ public class EmpleadoC {
 		ArrayList<Departamento> departamentos = DepartamentoC.verDepartamentos();
 		
 		
-		//HAY QUE ORDENAR POR ID. SACA DEPARTAMENTOS ALFABETICAMENTE
+//		HAY QUE ORDENAR POR ID. SACA DEPARTAMENTOS ALFABETICAMENTE
 		//Collections.sort(departamentos);
 		
 		
@@ -69,6 +73,28 @@ public class EmpleadoC {
 		ps.close();
 		cn.close();
 
+	}
+	
+	public void modificarUsuario () {
+		
+		
+//		Modificar los datos de un empleado existente
+		
+		
+		
+	}
+	
+	public void eliminarEmpleado() {
+		
+//		Eliminar un empleado de la empresa (si el empleado es técnico, eliminar el nivel asociado)
+		
+		
+	}
+	
+	public void realizarFichero() {
+		
+		
+//		Realizar un fichero con los empleados asociados
 	}
 
 }
