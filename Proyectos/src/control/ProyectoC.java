@@ -2,14 +2,14 @@ package control;
 
 public class ProyectoC {
 	
-	public void insertarProyecto () {
+	public static void insertarProyecto () {
 		
 //		Insertar un proyecto
 		
 		
 	}
 	
-	public void asociarEmpleado() {
+	public static void asociarEmpleado() {
 		
 //		Asociar un empleado a un proyecto existente
 		
@@ -17,7 +17,7 @@ public class ProyectoC {
 		
 	}
 	
-	public void listarProyectosPDF() {
+	public static void listarProyectosPDF() {
 		
 //		Listado de proyectos con los empleados que tienen con las fechas de inicio
 //		y finalización en un pdf

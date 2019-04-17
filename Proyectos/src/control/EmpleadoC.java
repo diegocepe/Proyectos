@@ -75,7 +75,7 @@ public class EmpleadoC {
 
 	}
 	
-	public void modificarUsuario () {
+	public static void modificarUsuario () {
 		
 		
 //		Modificar los datos de un empleado existente
@@ -84,14 +84,14 @@ public class EmpleadoC {
 		
 	}
 	
-	public void eliminarEmpleado() {
+	public static void eliminarEmpleado() {
 		
 //		Eliminar un empleado de la empresa (si el empleado es técnico, eliminar el nivel asociado)
 		
 		
 	}
 	
-	public void realizarFichero() {
+	public static void realizarFichero() {
 		
 		
 //		Realizar un fichero con los empleados asociados
