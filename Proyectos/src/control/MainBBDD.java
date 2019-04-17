@@ -53,7 +53,7 @@ public class MainBBDD {
 				} break;
 				
 				case 2: try {
-					EmpleadoC.modificarUsuario();
+					EmpleadoC.modificarEmpleado();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

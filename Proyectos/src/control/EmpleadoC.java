@@ -46,7 +46,7 @@ public class EmpleadoC {
 		
 		for(int i = 0; i < departamentos.size(); i++) {
 			
-			System.out.println(i+" - "+(departamentos.get(i)).getNombre_departamento());
+			System.out.println((i+1)+" - "+(departamentos.get(i)).getNombre_departamento());
 			
 		} 
 		
@@ -75,10 +75,15 @@ public class EmpleadoC {
 
 	}
 	
-	public static void modificarUsuario () {
+	public static void modificarEmpleado () {
 		
 		
 //		Modificar los datos de un empleado existente
+//		
+//		EnlaceJDBC enlace = new EnlaceJDBC();		
+//		boolean rowInserted = false;
+//		
+//		//////
 		
 		
 		
