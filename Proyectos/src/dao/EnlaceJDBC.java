@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Departamento;
+import modelo.Empleado;
 
 
 
@@ -90,6 +91,34 @@ public class EnlaceJDBC {
 		
 		return ar;
 	}
+	
+	public ArrayList<Empleado> verEmpleados() throws SQLException {
+		ArrayList<Empleado> ar = new ArrayList<Empleado>();
+		
+		//-----------conectamos
+		unaConexion.conectar();
+		connection = unaConexion.getJdbcConnection();
+		
+		//-----------generamos la sentencia
+		String sql = "SELECT * FROM empleado order by num_empleado";
+		PreparedStatement statement = connection.prepareStatement(sql);
+
+		//-----------ejecutamos la consulta
+		ResultSet rs = statement.executeQuery();
+		
+		
+		while (rs.next()) {
+			Empleado d = new Empleado(rs.getInt("num_empleado"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("tipo"), rs.getInt("cod_departamento"));
+			ar.add(d);
+		}
+		
+		//----------cerramos y desconectamos
+		rs.close();
+		unaConexion.desconectar();
+		
+		return ar;
+	}
+	
 	
 	
 }

@@ -40,17 +40,11 @@ public class EmpleadoC {
 		ArrayList<Departamento> departamentos = DepartamentoC.verDepartamentos();
 		
 		
-//		HAY QUE ORDENAR POR ID. SACA DEPARTAMENTOS ALFABETICAMENTE
-		//Collections.sort(departamentos);
-		
-		
 		for(int i = 0; i < departamentos.size(); i++) {
 			
 			System.out.println((i+1)+" - "+(departamentos.get(i)).getNombre_departamento());
 			
 		} 
-		
-		
 		
 		int departamento=sc.nextInt();
 		
@@ -75,15 +69,49 @@ public class EmpleadoC {
 
 	}
 	
-	public static void modificarEmpleado () {
+	public static ArrayList<Empleado> verEmpleados() throws SQLException {
+
+		EnlaceJDBC enlace = new EnlaceJDBC();
+		ArrayList<Empleado> resultado = enlace.verEmpleados();
+		return resultado;
+	}
+	
+	public static void modificarEmpleado () throws SQLException {
 		
 		
 //		Modificar los datos de un empleado existente
-//		
-//		EnlaceJDBC enlace = new EnlaceJDBC();		
-//		boolean rowInserted = false;
-//		
-//		//////
+		
+
+		EnlaceJDBC enlace=new EnlaceJDBC();
+		System.out.println("Elija el empleado que desea modificar: ");
+		
+		EmpleadoC.verEmpleados();
+		
+		ArrayList<Empleado> empleado = EmpleadoC.verEmpleados();
+		
+		for (int i = 0; i < empleado.size(); i++) {
+			
+			System.out.println((i+1)+" - "+(empleado.get(i)).getNombre());
+			
+		}
+		
+		Scanner sc=new Scanner (System.in);
+		int numEmple = sc.nextInt();
+		
+		
+		System.out.println("¿Qué desea modificar?");
+		
+		System.out.println("1. Numero de empleado. ");
+		System.out.println("2. Nombre. ");
+		System.out.println("3. Direccion. ");
+		System.out.println("4. Tipo. ");
+		System.out.println("5. Codigo de Departamento. ");
+
+		
+//		(int num_empleado, String nombre, String direccion, String tipo, int cod_departamento)
+		
+		
+		
 		
 		
 		
