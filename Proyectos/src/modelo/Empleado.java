@@ -8,10 +8,6 @@ public class Empleado {
 	private String tipo;
 	private int cod_departamento;
 
-	public Empleado() {
-		super();
-	}
-
 	public Empleado(int num_empleado, String nombre, String direccion, String tipo, int cod_departamento) {
 		super();
 		this.num_empleado = num_empleado;
@@ -19,6 +15,11 @@ public class Empleado {
 		this.direccion = direccion;
 		this.tipo = tipo;
 		this.cod_departamento = cod_departamento;
+	}
+	
+	public Empleado(int num_empleado) {
+		super();
+		this.num_empleado=num_empleado;
 	}
 
 	public int getNum_empleado() {

@@ -56,11 +56,14 @@ public class MainBBDD {
 					EmpleadoC.modificarEmpleado();
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				} break;
 				
-				; break;
+				case 3: try {
+					EmpleadoC.eliminarEmpleado();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} break;
 				
-				case 3: System.out.println("3"); break;
 				case 4: System.out.println("4"); break;
 				case 5: System.out.println("5"); break;
 				case 6: System.out.println("6"); break;
