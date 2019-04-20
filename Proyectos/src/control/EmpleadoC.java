@@ -169,44 +169,36 @@ public class EmpleadoC {
 		
 	
 	public static void eliminarEmpleado() throws SQLException {
-		
-//		Eliminar un empleado de la empresa (si el empleado es técnico, eliminar el nivel asociado)
-		
-		
-		
+				
 		Scanner sc=new Scanner (System.in);
-		System.out.println("Elija el empleado que desea eliminar: ");
-		
+		System.out.println("Elija el id de empleado que desea eliminar: ");
 		EmpleadoC.verEmpleados();
-		
 		ArrayList<Empleado> empleado = EmpleadoC.verEmpleados();
 		
 		for (int i = 0; i < empleado.size(); i++) {
 			
-			System.out.println((i+1)+" - "+(empleado.get(i)).getNombre());
+			System.out.println(((empleado.get(i)).getNum_empleado())+" - "+(empleado.get(i)).getNombre());
 			
 		}
-		int num=sc.nextInt();
 		
-		EnlaceJDBC enlace=new EnlaceJDBC();
+		int num_empleado=sc.nextInt();		
+				
 		Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa", "root", "");
-		PreparedStatement ps = cn.prepareStatement("DELETE FROM empleado WHERE num_empleado=? ");
-		Empleado eliminarEmpleado = new Empleado(num);
 		String query= "DELETE FROM empleado WHERE num_empleado=? ";
-		ps.setInt(1, eliminarEmpleado.getNum_empleado());
-		ps.executeUpdate(query);
-		
+		PreparedStatement ps = cn.prepareStatement(query);
+
+		ps.setInt(1, num_empleado);
+		ps.executeUpdate();
 		System.out.println("Un usuario fue eliminado.");
-		
-		
+			
 		ps.close();
 		cn.close();
-		
+		sc.close();
 
 		
 		
-		
-		
+		////ELIMINA PERO DA FALLO AL VOLVER AL MENU
+
 	}
 	
 	public static void realizarFichero() {

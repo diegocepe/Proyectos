@@ -37,7 +37,6 @@ public class MainBBDD {
 			System.out.println("5. Insertar un proyecto.");
 			System.out.println("6. Asociar un empleado a un proyecto existente.");
 			System.out.println("7. Listado de proyectos.");
-			System.out.println("8. Listar departamentos");
 			System.out.println("9. Salir");
 			System.out.println("Introduce un número: ");
 			opcion=scan.nextInt();
