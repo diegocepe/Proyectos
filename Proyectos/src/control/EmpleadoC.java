@@ -96,11 +96,9 @@ public class EmpleadoC {
 		
 		for (int i = 0; i < empleado.size(); i++) {
 			
-			System.out.println(((empleado.get(i)).getNum_empleado())+" - "+(empleado.get(i)).getNombre());
+			System.out.println((i+1)+" - "+(empleado.get(i)).getNombre());
 			
 		}
-		
-		int num_empleado=sc.nextInt();
 		
 		int numEmple = sc.nextInt();
 		int opcion=0;
