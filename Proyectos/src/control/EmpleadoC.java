@@ -2,6 +2,14 @@ package control;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -88,9 +96,11 @@ public class EmpleadoC {
 		
 		for (int i = 0; i < empleado.size(); i++) {
 			
-			System.out.println((i+1)+" - "+(empleado.get(i)).getNombre());
+			System.out.println(((empleado.get(i)).getNum_empleado())+" - "+(empleado.get(i)).getNombre());
 			
 		}
+		
+		int num_empleado=sc.nextInt();
 		
 		int numEmple = sc.nextInt();
 		int opcion=0;
@@ -157,11 +167,7 @@ public class EmpleadoC {
 			
 			break;
 		}
-		
-
-		
-
-		
+			
 	}
 		
 		
@@ -201,10 +207,47 @@ public class EmpleadoC {
 
 	}
 	
-	public static void realizarFichero() {
-		
+	public static void realizarFicheroEmpleados() throws SQLException {
+		EnlaceJDBC enlace = new EnlaceJDBC();	
+		Path file= Paths.get("Ficheros/listadoEmpleados.txt");
+		Charset charset = Charset.forName("UTF-8");
+			
+		ArrayList<Empleado> empleados=enlace.verEmpleados();
+			
+		System.out.println(empleados.size());
+		try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
+			for (int i = 0; i < empleados.size(); i++) {
+				writer.write(empleados.get(i).toString(), 0, empleados.get(i).toString().length());
+					
+				if (i<empleados.size()-1) writer.newLine();
+			}
+			   writer.close();
+		} catch (IOException x) {
+			    System.err.format("IOException: %s%n", x);
+		}
+	}
+	
+	
+	public static void realizarFichero() throws SQLException, IOException {
+
 		
 //		Realizar un fichero con los empleados asociados
-	}
 
+		
+		ArrayList<Empleado> empleado = EmpleadoC.verEmpleados();
+		
+		for (int i = 0; i < empleado.size(); i++) {
+			
+			System.out.println(("ID: "+(empleado.get(i)).getNum_empleado())+
+					" NOMBRE: "+(empleado.get(i)).getNombre()+
+					" DIRECCION: "+empleado.get(i).getDireccion()+
+					" TIPO: "+empleado.get(i).getTipo()+
+					" DEPARTAMENTO: "+empleado.get(i).getCod_departamento());
+			
+		}
+	
+		
+		
+
+	}
 }
