@@ -42,13 +42,13 @@ public class MainBBDD {
 					e.printStackTrace();
 				} break;
 				
-				case 2: try { //Falta practicamente todo
+				case 2: try { //No modifica y ERROR Exception in thread "main"
 					EmpleadoC.modificarEmpleado();
 				} catch (Exception e) {
 					e.printStackTrace();
 				} break;
 				
-				case 3: try { //Elimina correctamente pero al regresar al menu falla
+				case 3: try { //ERROR Exception in thread "main"
 					EmpleadoC.eliminarEmpleado();
 				} catch (Exception e) {
 					e.printStackTrace();

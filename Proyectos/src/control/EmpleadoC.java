@@ -86,6 +86,7 @@ public class EmpleadoC {
 	
 	public static void modificarEmpleado () throws SQLException {
 		
+
 		EnlaceJDBC enlace=new EnlaceJDBC();
 		Scanner sc=new Scanner (System.in);
 		System.out.println("Elija el empleado que desea modificar: ");
@@ -103,70 +104,47 @@ public class EmpleadoC {
 		int numEmple = sc.nextInt();
 		int opcion=0;
 		
-		System.out.println("¿Qué desea modificar?");
-		System.out.println("1. Numero empleado que quiere introducir. ");
-		System.out.println("2. Nombre. ");
-		System.out.println("3. Direccion. ");
-		System.out.println("4. Tipo. ");
-		System.out.println("5. Departamento. ");
+		System.out.println("Introduzca los datos a modificar: \n");
+
+		System.out.println("Nombre. ");
+		String nombreEmpleado=sc.nextLine();
+		System.out.println("Direccion. ");
+		String direccionEmpleado=sc.nextLine();
+		System.out.println("Tipo. ");
+		String tipoEmpleado=sc.nextLine();
+		System.out.println("Elija el departamento: ");
+			
+		ArrayList<Departamento> departamentos = DepartamentoC.verDepartamentos();
+			
+			
+		for(int i = 0; i < departamentos.size(); i++) {
+				
+			System.out.println((i+1)+" - "+(departamentos.get(i)).getNombre_departamento());
+				
+		} 
+			
+		int departamentoEmpleado=sc.nextInt();
+			
+		Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa", "root", "");
+		PreparedStatement ps = cn.prepareStatement("UPDATE empleado SET nombre=?, direccion=?, cod_departamento=?,tipo=? WHERE num_empleado=?");
+		ps.setInt(1, numEmple);
+		ps.setString(2, nombreEmpleado);
+		ps.setString(3, direccionEmpleado);
+		ps.setString(4, tipoEmpleado);
+		ps.setInt(5, departamentoEmpleado);
+			
+		int tf = ps.executeUpdate();
 		
-		switch (opcion) {
-		case 1:	
-			int num=sc.nextInt();
-			break;
-		case 2:
-			String nombre=sc.nextLine();
-			break;
-		case 3:
-			String direccion=sc.nextLine();
-			break;
-		case 4:
-			String tipo=sc.nextLine();
-			break;
-		case 5:
-			System.out.println("Elija el departamento: ");
+		if(tf > 0) {
+			System.out.println("Modificado correctamente.");
+		} else System.out.println("Ha ocurrido un error.");
 			
-			ArrayList<Departamento> departamentos = DepartamentoC.verDepartamentos();
+		ps.close();
+		cn.close();
+		sc.close();
 			
-			
-			for(int i = 0; i < departamentos.size(); i++) {
-				
-				System.out.println((i+1)+" - "+(departamentos.get(i)).getNombre_departamento());
-				
-			} 
-			
-			int departamento=sc.nextInt();
-			break;
-
-		default:
-			
-			
-
-			
-			Empleado modEmpleado = new Empleado(num, nombre, direccion, tipo, departamento);
-			
-			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/empresa", "root", "");
-			PreparedStatement ps = cn.prepareStatement("INSERT INTO EMPLEADO VALUES (?,?,?,?,?)");
-			ps.setInt(1, modEmpleado.getNum_empleado());
-			ps.setString(2, modEmpleado.getNombre());
-			ps.setString(3, modEmpleado.getDireccion());
-			ps.setString(4, modEmpleado.getTipo());
-			ps.setInt(5, modEmpleado.getCod_departamento());
-			
-			int tf = ps.executeUpdate();
-			
-			if(tf > 0) {
-				System.out.println(modEmpleado.getNombre() + " modificado correctamente.");
-			} else System.out.println("Ha ocurrido un error.");
-			
-			ps.close();
-			cn.close();
-			sc.close();
-			
-			break;
 		}
-			
-	}
+
 		
 		
 		
